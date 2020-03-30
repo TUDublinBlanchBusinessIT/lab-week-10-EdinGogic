@@ -52,6 +52,13 @@ class productController extends AppBaseController
         return view('products.index')
             ->with('products', $products);
     }
+     public function emptycart()
+     {
+         if (Session::has('cart')) {
+             Session::forget('cart');
+         }
+         return Response::json(['success'=>true],200);
+     }
 
     /**
      * Show the form for creating a new product.

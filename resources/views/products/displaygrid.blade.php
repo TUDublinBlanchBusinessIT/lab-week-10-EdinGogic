@@ -24,7 +24,7 @@
             <div class="panel-footer"><button id="addItem" type="button" class="btn btn-default center-block addItem" value="{{$product->id}}">Add To Cart</button></div> 
         </div> 
     </div> 
-	<script>
+<script>
 	$(".bth,.addItem").click(function() {
     var total = parseInt($('#shoppingcart').text());
     var i=$(this).val();
@@ -42,6 +42,17 @@
       }
     });
 });
+
+$("#emptycart").click(function() { $.ajax({ 
+    type: "get", url: "{{ url('products/emptycart')   }}",
+    success: function() { 
+        $('#shoppingcart').text(0); 
+    }, 
+    error: function() { 
+        alert("problem communicating with the server");
+    } 
+  }); 
+}); 
 </script>
     @php $j++ @endphp 
     @if ($j==3) @php $j=0 @endphp </div> @endif 
